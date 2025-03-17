@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/hello', [DemoController::class,'DemoAction']);
+Route::post('/hello', [DemoController::class,'DemoAction']);
+
