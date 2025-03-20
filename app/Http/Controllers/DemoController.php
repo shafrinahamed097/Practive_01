@@ -29,21 +29,33 @@ class DemoController extends Controller
       ";
     }
 
-    function DemoAction1(Request $request){
-      $photoFile = $request->file('photo');
-      $FileSize = filesize($photoFile);
-      $FileType = filetype($photoFile);
-      $FileOriginalName = $photoFile->getClientOriginalName();
-      $FileTempName = $photoFile->getFilename();
-      $FileExtension = $photoFile->extension();
+    // function DemoAction1(Request $request){
+    //   $photoFile = $request->file('photo');
+    //   $FileSize = filesize($photoFile);
+    //   $FileType = filetype($photoFile);
+    //   $FileOriginalName = $photoFile->getClientOriginalName();
+    //   $FileTempName = $photoFile->getFilename();
+    //   $FileExtension = $photoFile->extension();
       
-      return array(
-        'FileSize'=>$FileSize,
-        'FileType'=>$FileType,
-        'FileOriginalName' =>$FileOriginalName,
-        'FileTempName'=>$FileTempName,
-        'FileExtension'=>$FileExtension
+    //   return array(
+    //     'FileSize'=>$FileSize,
+    //     'FileType'=>$FileType,
+    //     'FileOriginalName' =>$FileOriginalName,
+    //     'FileTempName'=>$FileTempName,
+    //     'FileExtension'=>$FileExtension
 
-      );
-    }
-}
+    //   );
+    // }
+
+
+     function DemoAction1(Request $request){
+     
+      $photoFile = $request->file('photo');
+      // $photoFile->move(public_path('upload'), $photoFile->getClientOriginalName());
+      $photoFile->storeAs('upload', $photoFile->getClientOriginalName());
+      return true;
+
+     }
+
+
+  }
